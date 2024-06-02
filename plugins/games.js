@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 const {
   cmd
 } = require("../lib/plugins");
@@ -40,6 +48,42 @@ smd({
     await message.send('_Failed to fetch truth question._', { quoted: message.data });
   }
 });
+
+  smd({
+  pattern: 'riddle',
+  fromMe: false,
+  desc: 'Play the riddle game',
+  type: 'games'
+}, async (message, match) => {
+  try {
+    const response = await axios.get('https://jokes.one/api/jod');
+    const riddleData = response.data.contents.jokes[0];
+
+    const riddle = riddleData.joke.text;
+    const answer = riddleData.answer.text;
+
+    const buttons = [
+      { buttonId: 'correct', buttonText: 'Correct', type: 1 },
+      { buttonId: 'wrong', buttonText: 'Wrong', type: 1 }
+    ];
+
+    await message.sendButtons(`🤔 Here's a riddle for you:\n\n${riddle}`, buttons);
+
+    const userResponse = await message.waitForButtonResponse();
+
+    if (userResponse.buttonId === 'correct') {
+      await message.send(`🎉 Congratulations! The answer is: ${answer}`);
+    } else {
+      await message.send('Oops! That\'s not the correct answer. Better luck next time!');
+    }
+  } catch (error) {
+    console.error('Error fetching riddle:', error);
+    await message.send('_Failed to fetch riddle._', { quoted: message.data });
+  }
+});
+
+
+
 smd(
   {
     pattern: "guessage",
@@ -1410,36 +1454,6 @@ smd({
   }
 });
 
-smd(
-  {
-    pattern: "rizz",
-    desc: "Get a random pickup line.",
-    category: "fun",
-    filename: __filename,
-  },
-  async (m) => {
-    try {
-      const apiUrl = "https://api.popcat.xyz/pickuplines";
-      const response = await fetch(apiUrl);
-
-      if (!response.ok) {
-        return await m.send(
-          `*_Error: ${response.status} ${response.statusText}_*`
-        );
-      }
-
-      const data = await response.json();
-      const { pickupline, contributor } = data;
-
-      const message = `*Pickup Line:* ${pickupline}`;
-
-      await m.send(message);
-    } catch (e) {
-      await m.error(`${e}\n\ncommand: rizz`, e);
-    }
-  }
-);
-
 smd({
   pattern: 'insult',
   fromMe: false,
@@ -1495,381 +1509,6 @@ cmd({
     await ctx.error(error + "\n\ncommand : pick", error);
   }
 });
-
-
-var sifat = [
-  "Fine",
-  "Unfriendly",
-  "Cute",
-  "Sigma",
-  "Chapri",
-  "Nibba/nibbi",
-  "Annoying",
-  "Dilapidated",
-  "Angry person",
-  "Polite",
-  "Burden",
-  "Great",
-  "Cringe",
-  "Liar",
-];
-var hoby = [
-  "Cooking",
-  "Dancing",
-  "Playing",
-  "Gaming",
-  "Painting",
-  "Helping Others",
-  "Watching anime",
-  "Reading",
-  "Riding Bike",
-  "Singing",
-  "Chatting",
-  "Sharing Memes",
-  "Drawing",
-  "Eating Parents Money",
-  "Playing Truth or Dare",
-  "Staying Alone",
-];
-var cakep = ["Yes", "No", "Very Ugly", "Very Handsome"];
-var wetak = [
-  "Caring",
-  "Generous",
-  "Angry person",
-  "Sorry",
-  "Submissive",
-  "Fine",
-  "Im sorry",
-  "Kind Hearted",
-  "Patient",
-  "UwU",
-  "Top",
-  "Helpful",
-];
-var checkme = {};
-smd(
-  {
-    cmdname: "aboutme",
-    desc: "Check randome information about your character!",
-    category: "fun",
-    filename: __filename,
-  },
-  async (message, label) => {
-    try {
-      let randoms = message.sender;
-      if (message.isCreator) {
-        randoms = message.reply_message
-          ? message.reply_message.sender
-          : message.mentionedJid[0]
-            ? message.mentionedJid[0]
-            : randoms;
-      }
-      let botcap =
-        !/fresh|reset|new|why|update/g.test(label) && checkme[randoms]
-          ? checkme[randoms]
-          :
-          "*ABOUT @" +
-          randoms.split("@")[0] +
-          "*\n  \n*Name :* " +
-          (await message.bot.getName(randoms)).split("\n").join("  ") +
-          "\n*Characteristic :* " +
-          sifat[Math.floor(Math.random() * sifat.length)] +
-          "\n*Hobby :* " +
-          hoby[Math.floor(Math.random() * hoby.length)] +
-          "\n*Simp :* " +
-          Math.floor(Math.random() * 101) +
-          "%\n*Great :* " +
-          Math.floor(Math.random() * 101) +
-          "%\n*Handsome :* " +
-          cakep[Math.floor(Math.random() * cakep.length)] +
-          "\n*Character :* " +
-          wetak[Math.floor(Math.random() * wetak.length)] +
-          "\n*Good Morals :* " +
-          Math.floor(Math.random() * 101) +
-          "%\n*Bad Morals :* " +
-          Math.floor(Math.random() * 101) +
-          "%\n*Intelligence :* " +
-          Math.floor(Math.random() * 101) +
-          "%\n*Courage :* " +
-          Math.floor(Math.random() * 101) +
-          "%\n*Afraid :* " +
-          Math.floor(Math.random() * 101) +
-          "%\n  \n *aLL BOUT UO*";
-      checkme[randoms] = botcap;
-      message.bot.sendUi(
-        message.from,
-        {
-          caption: botcap,
-          mentions: [randoms],
-        },
-        {
-          quoted: message,
-        },
-        "image",
-        await message.getpp(randoms),
-        true
-      );
-    } catch (error) {
-      message.error(error + "\n\nCommand:aboutme", error, false);
-    }
-  }
-);
-const {
-  cmd
-} = require("../lib/plugins");
-const eco = require("discord-mongoose-economy");
-const {
-  smd,
-  prefix,
-  send,
-  Config
-} = require("../lib/");
-const axios = require('axios');
-
-
-function get_level_exp(xp) {
-    const levelThresholds = [
-        { level: 1, xpThreshold: 500 },
-        { level: 2, xpThreshold: 1000 },
-        { level: 3, xpThreshold: 2000 },
-        { level: 4, xpThreshold: 4000 },
-        { level: 5, xpThreshold: 7000 },
-        { level: 6, xpThreshold: 10000 },
-        { level: 7, xpThreshold: 15000 },
-        { level: 8, xpThreshold: 20000},
-        { level: 9, xpThreshold: 25000},
-        { level: 10, xpThreshold: 30000},
-        { level: 11, xpThreshold: 35000},
-        { level: 12, xpThreshold: 45000},
-        { level: 13, xpThreshold: 55000},
-        { level: 14, xpThreshold: 65000},
-        { level: 15, xpThreshold: 75000},
-        { level: 16, xpThreshold: 90000},
-        { level: 17, xpThreshold: 105000},
-        { level: 18, xpThreshold: 120000},
-        { level: 19, xpThreshold: 135000},
-        { level: 20, xpThreshold: 150000},
-        { level: 21, xpThreshold: 170000},
-        { level: 22, xpThreshold: 190000},
-        { level: 23, xpThreshold: 210000},
-        { level: 24, xpThreshold: 230000},
-        { level: 25, xpThreshold: 255000},
-        { level: 26, xpThreshold: 270000},
-        { level: 27, xpThreshold: 295000},
-        { level: 28, xpThreshold: 320000},
-        { level: 29, xpThreshold: 345000},
-        { level: 30, xpThreshold: 385000},
-        { level: 31, xpThreshold: 425000},
-        { level: 32, xpThreshold: 465000},
-        { level: 33, xpThreshold: 505000},
-        { level: 34, xpThreshold: 545000},
-        { level: 35, xpThreshold: 590000},
-        { level: 36, xpThreshold: 635000},
-        { level: 37, xpThreshold: 680000},
-        { level: 38, xpThreshold: 725000},
-        { level: 39, xpThreshold: 770000},
-        { level: 40, xpThreshold: 820000},
-        { level: 41, xpThreshold: 870000},
-        { level: 42, xpThreshold: 920000},
-        { level: 43, xpThreshold: 970000},
-        { level: 44, xpThreshold: 1020000},
-        { level: 45, xpThreshold: 1075000},
-        { level: 46, xpThreshold: 1130000},
-        { level: 47, xpThreshold: 1185000},
-        { level: 48, xpThreshold: 1240000},
-        { level: 49, xpThreshold: 1295000},
-        { level: 'Zk-GOD', xpThreshold: 2000000}
-    ];
-
-    let level = 0;
-    let exp = xp;
-    let xplimit = levelThresholds[level].xpThreshold;
-
-    for (let i = 0; i < levelThresholds.length; i++) {
-        if (xp >= levelThresholds[i].xpThreshold) {
-            level = levelThresholds[i].level;
-            xplimit = levelThresholds[i + 1]?.xpThreshold || 'No-limit';
-            exp = xp - levelThresholds[i].xpThreshold;
-        } else {
-            break;
-        }
-    }
-
-    return {
-        level: level,
-        xplimit: xplimit,
-        exp: exp
-    };
-}
-
-module.exports = {
-   get_level_exp,
-} ;
-
- smd( {
-  pattern: 'rank',
-  fromMe: false,
-  desc: 'show user rank',
-  type: 'games'
-
-   }, 
-   async(dest,zk, commandeOptions)=> {
-  
-    const {ms , arg, repondre,auteurMessage,nomAuteurMessage, msgRepondu , m, message, auteurMsgRepondu , mybotpic} = commandeOptions ;
-
-  if (m) {
-      
-       try {
-          
-        let rank = await getMessagesAndXPByJID(auteurMsgRepondu) ;
-
-        const data = await get_level_exp(rank.xp)
-         let ppuser ;
-    
-         
-         try {
-              ppuser = await zk.profilePictureUrl(auteurMsgRepondu , 'image') ;
-         } catch {
-            ppuser = mybotpic()
-         } ;
-    
-    
-         let role ;
-    
-         if (data.level < 5) {
-            role = 'baby'
-         } else if (data.level >= 5 || data.level < 10) {
-            role = 'kid-Ninja'
-         } else if ( data.level >= 10 || data.level < 15 ) {
-            role = 'Ninja-genin'
-         } else if ( data.level >= 15 || data.level < 20 ) {
-            role = 'Ninja-chunin'
-         } else if ( data.level >= 20 || data.level < 25 ) {
-            role = 'Ninja-jonin'
-         } else if ( data.level >= 25 || data.level < 30 ) {
-            role = 'ANBU'
-         } else if ( data.level >= 30 || data.level < 35 ) {
-            role = 'strong ninja'
-         } else if ( data.level >= 35 || data.level < 40 ) {
-            role = 'kage'
-         } else if ( data.level >= 40 || data.level < 45 ) {
-            role = 'Hermit seinin'
-         } else if ( data.level >= 45 || data.level < 50 ) {
-            role = 'Otsusuki'
-         } else {
-            role = 'GOD'
-         }
-    
-    
-         let msg = `
-┏━━━┛ WHIZBOT_MD Ranking┗━━━┓
-         
-    *Name :* @${auteurMsgRepondu.split("@")[0]}
-    
-    *Level :* ${data.level}
-    
-    *EXP :* ${data.exp}/${data.xplimit}
-    
-    *Role :* ${role}
-
-    *Messages :* ${rank.messages}
-    
-   ┕━✿━┑  ┍━✿━┙`
-    
-     zk.sendMessage( 
-        dest,
-        {
-            image : {url : ppuser},
-            caption : msg,
-            mentions : [auteurMsgRepondu]
-        },
-        {quoted : ms}
-      )
-
-
-       } catch (error) {
-         repondre(error)
-       }
-  }   else {
-
-
-      try {
-        
-        let jid = auteurMessage ;
-          
-        let rang = await getMessagesAndXPByJID(jid) ;
-
-        const data =  get_level_exp(rang.xp)
-         let ppuser ;
-    
-         
-         try {
-              ppuser = await zk.profilePictureUrl(jid, 'image') ;
-         } catch {
-            ppuser = mybotpic()
-         } ;
-    
-    
-         let role ;
-    
-         if (data.level < 5) {
-            role = 'Nouveau né(e)'
-         } else if (data.level >= 5 || data.level < 10) {
-            role = 'kid-Ninja'
-         } else if ( data.level >= 10 || data.level < 15 ) {
-            role = 'Ninja-genin'
-         } else if ( data.level >= 15 || data.level < 20 ) {
-            role = 'Ninja-chunin'
-         } else if ( data.level >= 20 || data.level < 25 ) {
-            role = 'Ninja-jonin'
-         } else if ( data.level >= 25 || data.level < 30 ) {
-            role = 'ANBU'
-         } else if ( data.level >= 30 || data.level < 35 ) {
-            role = 'strong ninja'
-         } else if ( data.level >= 35 || data.level < 40 ) {
-            role = 'kage'
-         } else if ( data.level >= 40 || data.level < 45 ) {
-            role = 'Hermit seinin'
-         } else if ( data.level >= 45 || data.level < 50 ) {
-            role = 'Otsusuki'
-         } else {
-            role = 'level-GOD'
-         }
-    
-    
-         let msg = `
-┏━━━┛ WHIZBOT MD Ranking ┗━━━┓
-     
-  *Name :* ${nomAuteurMessage}
-
-  *Level :* ${data.level}
-
-  *EXP :* ${data.exp}/${data.xplimit}
-
-  *Role :* ${role}
-
-  *Messages :* ${rang.messages}
-
-   ┕━✿━┑  ┍━✿━┙`
-    
-     zk.sendMessage( 
-        dest,
-        {
-            image : {url : ppuser},
-            caption : msg
-        },
-        {quoted : ms}
-      )
-
-      } catch (error) {
-         repondre(error)
-      }
-
-    } 
-
-
-}) ;
-
 
 
 

@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 const { Config, smd, tlang } = require("../lib");
 const cmd = smd;
 let antiCallMessage =

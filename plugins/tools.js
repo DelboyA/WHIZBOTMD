@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 let { smd, smdBuffer} = require(global.lib_dir || "../lib");
 let fs = require("fs");
 const fetch = require("node-fetch");
@@ -91,7 +99,7 @@ async (m) => {
     type: "general", // Command Category
     filename: __filename, // Filename for Reference
   },
-  async (m) => {
+  async (message, match) => {
     try {
       // Initialize the message text
       let text = `

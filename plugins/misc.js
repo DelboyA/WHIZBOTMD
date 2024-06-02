@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 let { smd, send, prefix } = require("../lib");
 const axios = require("axios")
 smd(
