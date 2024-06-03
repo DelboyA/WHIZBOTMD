@@ -1,8 +1,8 @@
 {
-  "name": "whizbot-md",
+  "name": "Delboy Bot",
   "description": "Simple WhatsApp Bot",
   "logo": "https://telegra.ph/file/24e2c2c0fcdcf17df52ac.jpg",
-  "keywords": "whizbot-Md",
+  "keywords": "Delboy-Md",
   
   "env": {
     "HEROKU_API_KEY": {
@@ -17,30 +17,30 @@
     },
     "OWNER_NAME": {
       "description": "Name for Bot Owner",    
-      "value": "whizbot",
+      "value": "Delboy",
       "required" :true
     }, 
     "BOT_NAME": {
       "description": " NAME FOR BOT",
       "required" :false,    
-      "value": "whizbot-ᴍᴅ"
+      "value": "Delboy-ᴍᴅ"
     }, 
     "PREFIX": {
       "description": "Enter your desired prefix for bot. you can set `all | . | .!*`",
-      "value": "."
+      "value": ".,+!"
     },
     "OWNER_NUMBER": {
       "description": "The phone numbers of the users who you want to be admin for the bot (should be in international format without + and multiple numbers must be separated by a comma \",\")",
-      "value": "18763351213"
+      "value": "254 773 440758"
     },
     "SESSION_ID": {
       "description": "put your SESSION_ID here.",
-      "value": ""
+      "value": "Asta;;;eyJub2lzZUtleSI6eyJwcml2YXRlIjp7InR5cGUiOiJCdWZmZXIiLCJkYXRhIjoiY0lVZHBrWElBQUFnL1pQV000a3NnQ3dLY3JaZlNyelNnMk5WV0JYMlpGWT0ifSwicHVibGljIjp7InR5cGUiOiJCdWZmZXIiLCJkYXRhIjoiUklqWVJZUUpSMElBamdOcUcwTDEzelk5UTVpVXgvd0FYWjFiTi9BRzJ4TT0ifX0sInBhaXJpbmdFcGhlbWVyYWxLZXlQYWlyIjp7InByaXZhdGUiOnsidHlwZSI6IkJ1ZmZlciIsImRhdGEiOiIyT2FIaXNRbXRPb0tGRTB1SXZhNFNkT2dOQzd2VXZqdFhKM3dydmZTMVZNPSJ9LCJwdWJsaWMiOnsidHlwZSI6IkJ1ZmZlciIsImRhdGEiOiJjY21NWHFrb1ZrWlRYQXVnL3l6dDJSMFZwa3A4a1R0VUk4UEhNOTJ1emdBPSJ9fSwic2lnbmVkSWRlbnRpdHlLZXkiOnsicHJpdmF0ZSI6eyJ0eXBlIjoiQnVmZmVyIiwiZGF0YSI6IlVIckdreGZXcWxCK3Exam9HQmY5RlVSUmV4WXBBb1R3elpJUHpCYi9SVkU9In0sInB1YmxpYyI6eyJ0eXBlIjoiQnVmZmVyIiwiZGF0YSI6IjBWYmVITWdXNnpSREp4TEtoWHVEWml3N2FOS3l3OUlXL1RwM0hTUWdZeDQ9In19LCJzaWduZWRQcmVLZXkiOnsia2V5UGFpciI6eyJwcml2YXRlIjp7InR5cGUiOiJCdWZmZXIiLCJkYXRhIjoiVUwrNUkzc1lKbGxGZ093ZjUxR1dsZDlZZW9CaHoyVGNvc01BQW80eWlXZz0ifSwicHVibGljIjp7InR5cGUiOiJCdWZmZXIiLCJkYXRhIjoiQzZ0YVBmL0NmSzNjUzNqZXRGcE5YMmk0N25JdTdKa1JpRzNqM1lVajRUbz0ifX0sInNpZ25hdHVyZSI6eyJ0eXBlIjoiQnVmZmVyIiwiZGF0YSI6InNPWHVjd1ZRVG9RWVlVVkkrNzBGMGJrMjRhSnVQbzhjNEE4WHA0UmdzS2pUbGVTN1FlNkhCaFBOVXg0TkhKaFRSbXVGUWI1K1NjdXhMaWlrU2ZoYml3PT0ifSwia2V5SWQiOjF9LCJyZWdpc3RyYXRpb25JZCI6NTcsImFkdlNlY3JldEtleSI6Ii9wL09kYXBrU2NLa2VTSERqMGxhc2lpWW1uQ295cVkzQ0ZtQzJTZnNPMmM9IiwicHJvY2Vzc2VkSGlzdG9yeU1lc3NhZ2VzIjpbeyJrZXkiOnsicmVtb3RlSmlkIjoiMjU0NzczNDQwNzU4QHMud2hhdHNhcHAubmV0IiwiZnJvbU1lIjp0cnVlLCJpZCI6IjhERUIwMTUwMzRBREE4NUMwRDU0MDQ3N0UyOTVEMDg0In0sIm1lc3NhZ2VUaW1lc3RhbXAiOjE3MTczOTU0NTV9LHsia2V5Ijp7InJlbW90ZUppZCI6IjI1NDc3MzQ0MDc1OEBzLndoYXRzYXBwLm5ldCIsImZyb21NZSI6dHJ1ZSwiaWQiOiIyRTY5ODYwNTYyMjc3NTk5NjE1MEU4NEQ0NzcxQTlBQSJ9LCJtZXNzYWdlVGltZXN0YW1wIjoxNzE3Mzk1NDU2fSx7ImtleSI6eyJyZW1vdGVKaWQiOiIyNTQ3NzM0NDA3NThAcy53aGF0c2FwcC5uZXQiLCJmcm9tTWUiOnRydWUsImlkIjoiQkM2RTBBQjdEMjRFMUNERkE5RjZGRjNBMEVBNzJFNkMifSwibWVzc2FnZVRpbWVzdGFtcCI6MTcxNzM5NTQ1N31dLCJuZXh0UHJlS2V5SWQiOjMxLCJmaXJzdFVudXBsb2FkZWRQcmVLZXlJZCI6MzEsImFjY291bnRTeW5jQ291bnRlciI6MSwiYWNjb3VudFNldHRpbmdzIjp7InVuYXJjaGl2ZUNoYXRzIjpmYWxzZX0sImRldmljZUlkIjoiazhSZFhick5ReXE1dFZ5MUlDcnYxQSIsInBob25lSWQiOiJjNGMzMjFlZC1hOWViLTQ0NTQtODE2ZS02YTRiNzY3MzRlZmUiLCJpZGVudGl0eUlkIjp7InR5cGUiOiJCdWZmZXIiLCJkYXRhIjoiN25OM3RBbGVteDRaRFlYRDFSN2kvSEJKb09vPSJ9LCJyZWdpc3RlcmVkIjp0cnVlLCJiYWNrdXBUb2tlbiI6eyJ0eXBlIjoiQnVmZmVyIiwiZGF0YSI6InVJS1lSZ3lUSnVHMWpUaXp4cU81c2d0TzFHcz0ifSwicmVnaXN0cmF0aW9uIjp7fSwicGFpcmluZ0NvZGUiOiJQTTZFSjNSSyIsIm1lIjp7ImlkIjoiMjU0NzczNDQwNzU4OjYyQHMud2hhdHNhcHAubmV0IiwibmFtZSI6IvCfkLLwn5CJ8J2Yv/CdmYUg8J2Yv/CdmYDwnZmH8J2YvfCdmYrwnZmUIPCdmLzwnZmJ8J2ZhPCdmYDwnZmU8J+MvvCfjLnwn4y38J+quCJ9LCJhY2NvdW50Ijp7ImRldGFpbHMiOiJDSmovOUlVQ0VPKy85YklHR0FFZ0FDZ0EiLCJhY2NvdW50U2lnbmF0dXJlS2V5IjoiTG13OThmS1NpTGxYaUc4bW83MzhIUnJSMHpOZ0tlbGlGWXpGVkoybndtUT0iLCJhY2NvdW50U2lnbmF0dXJlIjoiY3NYVFhtVVd6N2c5QytOWFhKT3hKRFIreEhScURmbjg0SkFZaEVpZkF4YmtJdGE1ajgyNTIyTFh1ZnFqUUJXekltbUNPa3hoYUE3bnQ2YkQ0TEt4RGc9PSIsImRldmljZVNpZ25hdHVyZSI6IkowZWFVVzBzaHBiV1MxVHBFVml1Y3MxakhwZGlUMnNoNGxCNU56V29QT3c1WkhGaUNNNThDWUlvVjArMG0xL2thSXFwTlBITmJtSmlmNXZFVlFWVWhnPT0ifSwic2lnbmFsSWRlbnRpdGllcyI6W3siaWRlbnRpZmllciI6eyJuYW1lIjoiMjU0NzczNDQwNzU4OjYyQHMud2hhdHNhcHAubmV0IiwiZGV2aWNlSWQiOjB9LCJpZGVudGlmaWVyS2V5Ijp7InR5cGUiOiJCdWZmZXIiLCJkYXRhIjoiQlM1c1BmSHlrb2k1VjRodkpxTzkvQjBhMGRNellDbnBZaFdNeFZTZHA4SmsifX1dLCJwbGF0Zm9ybSI6ImFuZHJvaWQiLCJsYXN0QWNjb3VudFN5bmNUaW1lc3RhbXAiOjE3MTczOTU0NTIsIm15QXBwU3RhdGVLZXlJZCI6IkFBQUFBRXcrIn0="
   
     },
     "MODE": {
       "description": "Worktype of your bot. Use public or private, if it is private then only bot number can use it. If public then everyone can use it.",
-      "value": "private"
+      "value": "public"
     },
     "USER_IMAGES": {
       "description": "Image for bot",
@@ -50,7 +50,7 @@
     "TZ": {
       "description": "Put TIME_ZONE according to your location",
       "required" :false,    
-      "value": "Africa/Lagos"
+      "value": "Africa/Nairobi"
     },  
     "READ_COMMAND": {
       "description": " Read bot cmds",
@@ -60,7 +60,7 @@
     "WARN_COUNT": {
       "description": " Warn count for users to kick/block when warn limit exceed!",
       "required" :false,    
-      "value": "3"
+      "value": "1"
     },  
     "AUTO_SAVE_STATUS": {
       "description": " Auto save whatsapp status", 
@@ -109,7 +109,7 @@
     },
     "PACK_NAME": {
       "description": "Put Sticker Pack_Name.",
-      "value": "whizbot-ᴍᴅ",
+      "value": "Delboy-ᴍᴅ",
       "required": false 
     },
     "PACK_AUTHER": {
